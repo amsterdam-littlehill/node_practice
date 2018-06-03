@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><link rel="stylesheet" href="/stylesheets/style.css"><link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.css"></head><body screen_capture_injected="true"><div class="container"><form role="form" method="post" onsubmit="return false" class="col-sm-offset-4 col-sm-4 form-horizontal"><fieldset><legend></legend><div class="panel panel-default"><div class="panel-heading"><p class="tc">注册</p></div><div class="panel-body m15"><div class="form-group"><div class="input-group"><span class="input-group-addon"></span><span class="glyphicon glyphicon-user"></span><input id="username" type="text" name="username" placeholder="请输入用户名" required class="form-control"></div></div><div class="form-group"><div class="input-group"><span class="input-group-addon"></span><span class="glyphicon glyphicon-lock"></span><input id="password" type="password" name="password" placeholder="请输入密码" required class="form-control"></div></div><div class="form-group"><div class="input-group"><span class="input-group-addon"></span><span class="glyphicon glyphicon-lock"></span><input id="password1" type="password" name="password1" placeholder="请再次输入密码" required class="form-control"></div></div><div class="form-group"><button id="register1" type="submit" class="btn btn-primary btn-block">注册</button></div><div class="form-group"><button id="login1" type="button" class="btn btn-info btn-block">登录</button></div></div></div></fieldset></form></div><script src="/javascripts/jquery-3.3.1.min.js"></script><script src="/plugins/bootstrap/js/bootstrap.js"></script><script type="text/javascript">$(function () {
+    $("#login1").click(function () {
+        location.href = 'login';
+    });
+    $("#register1").click(function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var password1 = $("#password1").val();
+        if (password !== password1) {
+            $("#password").css("border", "1px solid red");
+            $("#password1").css("border", "1px solid red");
+        } else if (password === password1) {
+            var data = {"uname": username, "upwd": password};
+            $.ajax({
+                url: '/register',
+                type: 'post',
+                data: data,
+                success: function (data, status) {
+                    if (status == 'success') {
+                        location.href = 'login';
+                    }
+                },
+                error: function (data, err) {
+                    debugger;
+                    location.href = 'register';
+                }
+            });
+        }
+    });
+});</script></body></html>

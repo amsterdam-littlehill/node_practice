@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1= title
+  if user
+      span.left #{user.name}
+      a.right(href="/logout") 退出登录
+      div
+        p 用户列表
+        table#user.table.table-striped
+          thead
+            tr
+              td 用户标识
+              td 用户名称
+          tbody#userbody
+              each item,i  in users
+                  tr
+                    td=item[i]._id
+                    td=item[i].name
+
+  else
+      div
+          a(href="/login") 登录
+          a(href="/register") 注册
+
+
+block script
+    //script(type='text/javascript').
+    //    $(function () {
+    //        var users=[];
+    //        $.ajax({
+    //            url: '/allUser',
+    //            type: 'get',
+    //            success: function (data, status) {
+    //                 var htmlText="";
+    //                 $.each(data, function (index, item) {
+    //                     console.log(JSON.stringify(item));
+    //                     htmlText += "<tr><td>" + item[index]._id + "</td><td>" + item[index].name + "</td></tr>" / })
+    //                 $("#userbody").append(htmlText);
+    //            },
+    //            error: function (data, status) {
+    //               console.log(status);
+    //            }
+    //        });
+    //    });
