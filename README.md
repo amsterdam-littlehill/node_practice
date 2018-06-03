@@ -187,6 +187,4 @@
 3. webstorm启动    
 
     在webstorm中创建node express项目
-#### mvc架构?
-
-#### tpl渲染  
+ 
